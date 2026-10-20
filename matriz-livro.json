@@ -1,0 +1,29 @@
+
+{
+  "protocolo": "PR-LIMIAR",
+  "versao_matriz": "1.0.0",
+  "obra": "Pedagogia da Responsividade",
+  "tipo": "matriz_textual",
+  "criterio": {
+    "referencia": "pagina_pdf",
+    "organizacao": "pagina_linha_palavra",
+    "numeracao_inicial": 1
+  },
+  "paginas": [
+    {
+      "pagina_pdf": 20,
+      "linhas": [
+        {
+          "numero": 1,
+          "palavras": [
+            "Antes",
+            "de",
+            "reconhecer",
+            "a",
+            "Pedagogia"
+          ]
+        }
+      ]
+    }
+  ]
+}
