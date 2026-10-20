@@ -1,0 +1,1063 @@
+{
+  "protocolo": "PR-LIMIAR",
+  "arquivo": "matriz-playfair",
+  "versao": "2.0.0",
+  "obra": "Pedagogia da Responsividade",
+  "origem": "PEDAGOGIA DA RESPONSIVIDADE - palavras da cifras.docx",
+  "chaves_total": 20,
+  "regras": {
+    "cifra": "Playfair classica 5x5",
+    "alfabeto": "ABCDEFGHIKLMNOPQRSTUVWXYZ",
+    "normalizacao": "Maiusculas sem diacriticos; J representado por I; remover espacos e pontuacao; eliminar letras repetidas da chave conservando a primeira ocorrencia",
+    "preenchimento": "X entre letras iguais e ao final se necessario; Q alternativo se a letra repetida for X",
+    "deslocamento": "Mesma linha: direita cifrar, esquerda decifrar; mesma coluna: baixo cifrar, cima decifrar; retangulo: trocar colunas",
+    "palavra_chave": "Sorteada entre as 20 chaves, fixa durante um desafio"
+  },
+  "chaves_literarias": [
+    {
+      "id": "PL01",
+      "expressao": "responsividade",
+      "chave_normalizada": "RESPONSIVIDADE",
+      "pista": "Não basta reagir; é preciso responder ao humano.",
+      "referencia": {
+        "paragrafo_docx": 40,
+        "trecho_para_conferencia": "ve conceitual: uma Pedagogia da Responsividade."
+      },
+      "matriz_5x5": [
+        [
+          "R",
+          "E",
+          "S",
+          "P",
+          "O"
+        ],
+        [
+          "N",
+          "I",
+          "V",
+          "D",
+          "A"
+        ],
+        [
+          "B",
+          "C",
+          "F",
+          "G",
+          "H"
+        ],
+        [
+          "K",
+          "L",
+          "M",
+          "Q",
+          "T"
+        ],
+        [
+          "U",
+          "W",
+          "X",
+          "Y",
+          "Z"
+        ]
+      ],
+      "vetor_teste": {
+        "texto_original": "LIMIAR",
+        "cifrado": "WCLVNO",
+        "decifrado": "LIMIAR"
+      }
+    },
+    {
+      "id": "PL02",
+      "expressao": "resiliência",
+      "chave_normalizada": "RESILIENCIA",
+      "pista": "Permanece depois da ruptura, mas não governa sozinha.",
+      "referencia": {
+        "paragrafo_docx": 42,
+        "trecho_para_conferencia": "Nesse ponto, a resiliência permanece importante, mas já não ocupa sozinha o centro da obra. Ela ajuda a compreender como algu"
+      },
+      "matriz_5x5": [
+        [
+          "R",
+          "E",
+          "S",
+          "I",
+          "L"
+        ],
+        [
+          "N",
+          "C",
+          "A",
+          "B",
+          "D"
+        ],
+        [
+          "F",
+          "G",
+          "H",
+          "K",
+          "M"
+        ],
+        [
+          "O",
+          "P",
+          "Q",
+          "T",
+          "U"
+        ],
+        [
+          "V",
+          "W",
+          "X",
+          "Y",
+          "Z"
+        ]
+      ],
+      "vetor_teste": {
+        "texto_original": "LIMIAR",
+        "cifrado": "RLKLNS",
+        "decifrado": "LIMIAR"
+      }
+    },
+    {
+      "id": "PL03",
+      "expressao": "espelho",
+      "chave_normalizada": "ESPELHO",
+      "pista": "De frente, o outro devolve uma pergunta.",
+      "referencia": {
+        "paragrafo_docx": 43,
+        "trecho_para_conferencia": "nha a obra, “Estou de frente ao espelho vendo você”, não aparece como adorno poético. Ela organiza uma forma de olhar. O espe"
+      },
+      "matriz_5x5": [
+        [
+          "E",
+          "S",
+          "P",
+          "L",
+          "H"
+        ],
+        [
+          "O",
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        [
+          "F",
+          "G",
+          "I",
+          "K",
+          "M"
+        ],
+        [
+          "N",
+          "Q",
+          "R",
+          "T",
+          "U"
+        ],
+        [
+          "V",
+          "W",
+          "X",
+          "Y",
+          "Z"
+        ]
+      ],
+      "vetor_teste": {
+        "texto_original": "LIMIAR",
+        "cifrado": "PKFKBQ",
+        "decifrado": "LIMIAR"
+      }
+    },
+    {
+      "id": "PL04",
+      "expressao": "singularidade",
+      "chave_normalizada": "SINGULARIDADE",
+      "pista": "O encontro não apaga o que torna cada vida distinta.",
+      "referencia": {
+        "paragrafo_docx": 45,
+        "trecho_para_conferencia": "iza a partir dessa tensão entre singularidade e reconhecimento. Primeiro, volta-se ao sujeito que antecede a formação pedagóg"
+      },
+      "matriz_5x5": [
+        [
+          "S",
+          "I",
+          "N",
+          "G",
+          "U"
+        ],
+        [
+          "L",
+          "A",
+          "R",
+          "D",
+          "E"
+        ],
+        [
+          "B",
+          "C",
+          "F",
+          "H",
+          "K"
+        ],
+        [
+          "M",
+          "O",
+          "P",
+          "Q",
+          "T"
+        ],
+        [
+          "V",
+          "W",
+          "X",
+          "Y",
+          "Z"
+        ]
+      ],
+      "vetor_teste": {
+        "texto_original": "LIMIAR",
+        "cifrado": "ASOSRD",
+        "decifrado": "LIMIAR"
+      }
+    },
+    {
+      "id": "PL05",
+      "expressao": "reconhecimento",
+      "chave_normalizada": "RECONHECIMENTO",
+      "pista": "Um olhar que não reduz o sujeito ao desempenho.",
+      "referencia": {
+        "paragrafo_docx": 39,
+        "trecho_para_conferencia": "forma de leitura do sujeito, de reconhecimento da vulnerabilidade e de resposta ética às condições concretas em que aprender,"
+      },
+      "matriz_5x5": [
+        [
+          "R",
+          "E",
+          "C",
+          "O",
+          "N"
+        ],
+        [
+          "H",
+          "I",
+          "M",
+          "T",
+          "A"
+        ],
+        [
+          "B",
+          "D",
+          "F",
+          "G",
+          "K"
+        ],
+        [
+          "L",
+          "P",
+          "Q",
+          "S",
+          "U"
+        ],
+        [
+          "V",
+          "W",
+          "X",
+          "Y",
+          "Z"
+        ]
+      ],
+      "vetor_teste": {
+        "texto_original": "LIMIAR",
+        "cifrado": "PHTMHN",
+        "decifrado": "LIMIAR"
+      }
+    },
+    {
+      "id": "PL06",
+      "expressao": "vulnerabilidade",
+      "chave_normalizada": "VULNERABILIDADE",
+      "pista": "Nem toda fragilidade significa incapacidade.",
+      "referencia": {
+        "paragrafo_docx": 39,
+        "trecho_para_conferencia": "o sujeito, de reconhecimento da vulnerabilidade e de resposta ética às condições concretas em que aprender, ensinar e permane"
+      },
+      "matriz_5x5": [
+        [
+          "V",
+          "U",
+          "L",
+          "N",
+          "E"
+        ],
+        [
+          "R",
+          "A",
+          "B",
+          "I",
+          "D"
+        ],
+        [
+          "C",
+          "F",
+          "G",
+          "H",
+          "K"
+        ],
+        [
+          "M",
+          "O",
+          "P",
+          "Q",
+          "S"
+        ],
+        [
+          "T",
+          "W",
+          "X",
+          "Y",
+          "Z"
+        ]
+      ],
+      "vetor_teste": {
+        "texto_original": "LIMIAR",
+        "cifrado": "NBQRBA",
+        "decifrado": "LIMIAR"
+      }
+    },
+    {
+      "id": "PL07",
+      "expressao": "permanência",
+      "chave_normalizada": "PERMANENCIA",
+      "pista": "Uma leitura ou uma vida que não se encerra na pressa.",
+      "referencia": {
+        "paragrafo_docx": 26,
+        "trecho_para_conferencia": "da, o incômodo, o intervalo e a permanência. Não se trata de negar o auxílio, mas de reconhecer que existe uma distância entr"
+      },
+      "matriz_5x5": [
+        [
+          "P",
+          "E",
+          "R",
+          "M",
+          "A"
+        ],
+        [
+          "N",
+          "C",
+          "I",
+          "B",
+          "D"
+        ],
+        [
+          "F",
+          "G",
+          "H",
+          "K",
+          "L"
+        ],
+        [
+          "O",
+          "Q",
+          "S",
+          "T",
+          "U"
+        ],
+        [
+          "V",
+          "W",
+          "X",
+          "Y",
+          "Z"
+        ]
+      ],
+      "vetor_teste": {
+        "texto_original": "LIMIAR",
+        "cifrado": "HDRBPM",
+        "decifrado": "LIMIAR"
+      }
+    },
+    {
+      "id": "PL08",
+      "expressao": "mediação",
+      "chave_normalizada": "MEDIACAO",
+      "pista": "A ponte auxilia, mas não pode ocupar o lugar da travessia.",
+      "referencia": {
+        "paragrafo_docx": 31,
+        "trecho_para_conferencia": "ar a este livro por meio de uma mediação técnica, que não veja nisso culpa. A mediação pode ser uma entrada legítima. O cuida"
+      },
+      "matriz_5x5": [
+        [
+          "M",
+          "E",
+          "D",
+          "I",
+          "A"
+        ],
+        [
+          "C",
+          "O",
+          "B",
+          "F",
+          "G"
+        ],
+        [
+          "H",
+          "K",
+          "L",
+          "N",
+          "P"
+        ],
+        [
+          "Q",
+          "R",
+          "S",
+          "T",
+          "U"
+        ],
+        [
+          "V",
+          "W",
+          "X",
+          "Y",
+          "Z"
+        ]
+      ],
+      "vetor_teste": {
+        "texto_original": "LIMIAR",
+        "cifrado": "NDEAEU",
+        "decifrado": "LIMIAR"
+      }
+    },
+    {
+      "id": "PL09",
+      "expressao": "presença",
+      "chave_normalizada": "PRESENCA",
+      "pista": "O que atravessa a técnica quando há responsabilidade.",
+      "referencia": {
+        "paragrafo_docx": 25,
+        "trecho_para_conferencia": " rapidez antes impensável. Essa presença não precisa ser recusada. Ela ajuda, esclarece passagens difíceis, recupera referênc"
+      },
+      "matriz_5x5": [
+        [
+          "P",
+          "R",
+          "E",
+          "S",
+          "N"
+        ],
+        [
+          "C",
+          "A",
+          "B",
+          "D",
+          "F"
+        ],
+        [
+          "G",
+          "H",
+          "I",
+          "K",
+          "L"
+        ],
+        [
+          "M",
+          "O",
+          "Q",
+          "T",
+          "U"
+        ],
+        [
+          "V",
+          "W",
+          "X",
+          "Y",
+          "Z"
+        ]
+      ],
+      "vetor_teste": {
+        "texto_original": "LIMIAR",
+        "cifrado": "GKQGHA",
+        "decifrado": "LIMIAR"
+      }
+    },
+    {
+      "id": "PL10",
+      "expressao": "formação",
+      "chave_normalizada": "FORMACAO",
+      "pista": "A vida já a escreve antes de qualquer currículo.",
+      "referencia": {
+        "paragrafo_docx": 33,
+        "trecho_para_conferencia": "mas porque pertencem à ordem da formação."
+      },
+      "matriz_5x5": [
+        [
+          "F",
+          "O",
+          "R",
+          "M",
+          "A"
+        ],
+        [
+          "C",
+          "B",
+          "D",
+          "E",
+          "G"
+        ],
+        [
+          "H",
+          "I",
+          "K",
+          "L",
+          "N"
+        ],
+        [
+          "P",
+          "Q",
+          "S",
+          "T",
+          "U"
+        ],
+        [
+          "V",
+          "W",
+          "X",
+          "Y",
+          "Z"
+        ]
+      ],
+      "vetor_teste": {
+        "texto_original": "LIMIAR",
+        "cifrado": "NKOLFM",
+        "decifrado": "LIMIAR"
+      }
+    },
+    {
+      "id": "PL11",
+      "expressao": "silêncio",
+      "chave_normalizada": "SILENCIO",
+      "pista": "Nem sempre significa ausência ou indiferença.",
+      "referencia": {
+        "paragrafo_docx": 27,
+        "trecho_para_conferencia": "erda, de uma lembrança ou de um silêncio inesperado, aquilo retorna, não como informação recuperada, mas como presença íntima"
+      },
+      "matriz_5x5": [
+        [
+          "S",
+          "I",
+          "L",
+          "E",
+          "N"
+        ],
+        [
+          "C",
+          "O",
+          "A",
+          "B",
+          "D"
+        ],
+        [
+          "F",
+          "G",
+          "H",
+          "K",
+          "M"
+        ],
+        [
+          "P",
+          "Q",
+          "R",
+          "T",
+          "U"
+        ],
+        [
+          "V",
+          "W",
+          "X",
+          "Y",
+          "Z"
+        ]
+      ],
+      "vetor_teste": {
+        "texto_original": "LIMIAR",
+        "cifrado": "ELGNHX",
+        "decifrado": "LIMIAR"
+      }
+    },
+    {
+      "id": "PL12",
+      "expressao": "cuidado",
+      "chave_normalizada": "CUIDADO",
+      "pista": "Uma resposta que não se reduz ao acolhimento genérico.",
+      "referencia": {
+        "paragrafo_docx": 31,
+        "trecho_para_conferencia": " texto. Não por recusa, mas por cuidado. Há passagens que precisam ser lidas diretamente, não porque escondam um segredo inac"
+      },
+      "matriz_5x5": [
+        [
+          "C",
+          "U",
+          "I",
+          "D",
+          "A"
+        ],
+        [
+          "O",
+          "B",
+          "E",
+          "F",
+          "G"
+        ],
+        [
+          "H",
+          "K",
+          "L",
+          "M",
+          "N"
+        ],
+        [
+          "P",
+          "Q",
+          "R",
+          "S",
+          "T"
+        ],
+        [
+          "V",
+          "W",
+          "X",
+          "Y",
+          "Z"
+        ]
+      ],
+      "vetor_teste": {
+        "texto_original": "LIMIAR",
+        "cifrado": "RELDIT",
+        "decifrado": "LIMIAR"
+      }
+    },
+    {
+      "id": "PL13",
+      "expressao": "memória",
+      "chave_normalizada": "MEMORIA",
+      "pista": "O passado retorna como uma maneira de olhar.",
+      "referencia": {
+        "paragrafo_docx": 41,
+        "trecho_para_conferencia": "r que o aprender envolve corpo, memória, ambiente, vínculo, linguagem, reconhecimento e possibilidade. É também admitir que o"
+      },
+      "matriz_5x5": [
+        [
+          "M",
+          "E",
+          "O",
+          "R",
+          "I"
+        ],
+        [
+          "A",
+          "B",
+          "C",
+          "D",
+          "F"
+        ],
+        [
+          "G",
+          "H",
+          "K",
+          "L",
+          "N"
+        ],
+        [
+          "P",
+          "Q",
+          "S",
+          "T",
+          "U"
+        ],
+        [
+          "V",
+          "W",
+          "X",
+          "Y",
+          "Z"
+        ]
+      ],
+      "vetor_teste": {
+        "texto_original": "LIMIAR",
+        "cifrado": "NREMDM",
+        "decifrado": "LIMIAR"
+      }
+    },
+    {
+      "id": "PL14",
+      "expressao": "território",
+      "chave_normalizada": "TERRITORIO",
+      "pista": "Casa, ramal, quintal e caminho também ensinam.",
+      "referencia": {
+        "paragrafo_docx": 48,
+        "trecho_para_conferencia": "ber que a sala de aula não é um território separado das condições sociais, afetivas e simbólicas que entram com cada estudant"
+      },
+      "matriz_5x5": [
+        [
+          "T",
+          "E",
+          "R",
+          "I",
+          "O"
+        ],
+        [
+          "A",
+          "B",
+          "C",
+          "D",
+          "F"
+        ],
+        [
+          "G",
+          "H",
+          "K",
+          "L",
+          "M"
+        ],
+        [
+          "N",
+          "P",
+          "Q",
+          "S",
+          "U"
+        ],
+        [
+          "V",
+          "W",
+          "X",
+          "Y",
+          "Z"
+        ]
+      ],
+      "vetor_teste": {
+        "texto_original": "LIMIAR",
+        "cifrado": "SDLOCT",
+        "decifrado": "LIMIAR"
+      }
+    },
+    {
+      "id": "PL15",
+      "expressao": "infância",
+      "chave_normalizada": "INFANCIA",
+      "pista": "O tempo em que o corpo aprende antes da teoria.",
+      "referencia": {
+        "paragrafo_docx": 44,
+        "trecho_para_conferencia": "ade que também nos atravessa, a infância que ainda nos interroga, a precariedade que se repete em novas formas, a força discr"
+      },
+      "matriz_5x5": [
+        [
+          "I",
+          "N",
+          "F",
+          "A",
+          "C"
+        ],
+        [
+          "B",
+          "D",
+          "E",
+          "G",
+          "H"
+        ],
+        [
+          "K",
+          "L",
+          "M",
+          "O",
+          "P"
+        ],
+        [
+          "Q",
+          "R",
+          "S",
+          "T",
+          "U"
+        ],
+        [
+          "V",
+          "W",
+          "X",
+          "Y",
+          "Z"
+        ]
+      ],
+      "vetor_teste": {
+        "texto_original": "LIMIAR",
+        "cifrado": "KNKFNT",
+        "decifrado": "LIMIAR"
+      }
+    },
+    {
+      "id": "PL16",
+      "expressao": "escassez",
+      "chave_normalizada": "ESCASSEZ",
+      "pista": "Quando a pobreza passa a morar nos objetos.",
+      "referencia": {
+        "paragrafo_docx": 64,
+        "trecho_para_conferencia": "ar espaço com a urgência, com a escassez, com o cansaço dos adultos e com a falta de meios para proteger tudo o que se ama. E"
+      },
+      "matriz_5x5": [
+        [
+          "E",
+          "S",
+          "C",
+          "A",
+          "Z"
+        ],
+        [
+          "B",
+          "D",
+          "F",
+          "G",
+          "H"
+        ],
+        [
+          "I",
+          "K",
+          "L",
+          "M",
+          "N"
+        ],
+        [
+          "O",
+          "P",
+          "Q",
+          "R",
+          "T"
+        ],
+        [
+          "U",
+          "V",
+          "W",
+          "X",
+          "Y"
+        ]
+      ],
+      "vetor_teste": {
+        "texto_original": "LIMIAR",
+        "cifrado": "MKNKGX",
+        "decifrado": "LIMIAR"
+      }
+    },
+    {
+      "id": "PL17",
+      "expressao": "vergonha",
+      "chave_normalizada": "VERGONHA",
+      "pista": "Por vezes chega à escola antes da chamada.",
+      "referencia": {
+        "paragrafo_docx": 69,
+        "trecho_para_conferencia": "Às vezes, a vergonha chegava antes da chamada. Vinha no tecido gasto da farda, na manga que já não cobria como antes, na calç"
+      },
+      "matriz_5x5": [
+        [
+          "V",
+          "E",
+          "R",
+          "G",
+          "O"
+        ],
+        [
+          "N",
+          "H",
+          "A",
+          "B",
+          "C"
+        ],
+        [
+          "D",
+          "F",
+          "I",
+          "K",
+          "L"
+        ],
+        [
+          "M",
+          "P",
+          "Q",
+          "S",
+          "T"
+        ],
+        [
+          "U",
+          "W",
+          "X",
+          "Y",
+          "Z"
+        ]
+      ],
+      "vetor_teste": {
+        "texto_original": "LIMIAR",
+        "cifrado": "DKQDIA",
+        "decifrado": "LIMIAR"
+      }
+    },
+    {
+      "id": "PL18",
+      "expressao": "escuta",
+      "chave_normalizada": "ESCUTA",
+      "pista": "Não ocupa a experiência do outro; abre-lhe espaço.",
+      "referencia": {
+        "paragrafo_docx": 29,
+        "trecho_para_conferencia": "ncontra, no leitor, uma zona de escuta que não estava pronta desde o início. Talvez seja por isso que nem sempre a conclusão "
+      },
+      "matriz_5x5": [
+        [
+          "E",
+          "S",
+          "C",
+          "U",
+          "T"
+        ],
+        [
+          "A",
+          "B",
+          "D",
+          "F",
+          "G"
+        ],
+        [
+          "H",
+          "I",
+          "K",
+          "L",
+          "M"
+        ],
+        [
+          "N",
+          "O",
+          "P",
+          "Q",
+          "R"
+        ],
+        [
+          "V",
+          "W",
+          "X",
+          "Y",
+          "Z"
+        ]
+      ],
+      "vetor_teste": {
+        "texto_original": "LIMIAR",
+        "cifrado": "MKHKGN",
+        "decifrado": "LIMIAR"
+      }
+    },
+    {
+      "id": "PL19",
+      "expressao": "linguagem",
+      "chave_normalizada": "LINGUAGEM",
+      "pista": "O que oferece ao vivido outra forma de inteligibilidade.",
+      "referencia": {
+        "paragrafo_docx": 40,
+        "trecho_para_conferencia": "a nomear a dor, como se dar-lhe linguagem já fosse suficiente para transformá-la. O desafio é mais exigente: perceber o que a"
+      },
+      "matriz_5x5": [
+        [
+          "L",
+          "I",
+          "N",
+          "G",
+          "U"
+        ],
+        [
+          "A",
+          "E",
+          "M",
+          "B",
+          "C"
+        ],
+        [
+          "D",
+          "F",
+          "H",
+          "K",
+          "O"
+        ],
+        [
+          "P",
+          "Q",
+          "R",
+          "S",
+          "T"
+        ],
+        [
+          "V",
+          "W",
+          "X",
+          "Y",
+          "Z"
+        ]
+      ],
+      "vetor_teste": {
+        "texto_original": "LIMIAR",
+        "cifrado": "INENMP",
+        "decifrado": "LIMIAR"
+      }
+    },
+    {
+      "id": "PL20",
+      "expressao": "pertencimento",
+      "chave_normalizada": "PERTENCIMENTO",
+      "pista": "Aquilo que pode se ferir até mesmo sem uma palavra.",
+      "referencia": {
+        "paragrafo_docx": 48,
+        "trecho_para_conferencia": "ulos, reconhecer limites, criar pertencimento, acionar redes e articular uma atuação que seja, ao mesmo tempo, técnica e huma"
+      },
+      "matriz_5x5": [
+        [
+          "P",
+          "E",
+          "R",
+          "T",
+          "N"
+        ],
+        [
+          "C",
+          "I",
+          "M",
+          "O",
+          "A"
+        ],
+        [
+          "B",
+          "D",
+          "F",
+          "G",
+          "H"
+        ],
+        [
+          "K",
+          "L",
+          "Q",
+          "S",
+          "U"
+        ],
+        [
+          "V",
+          "W",
+          "X",
+          "Y",
+          "Z"
+        ]
+      ],
+      "vetor_teste": {
+        "texto_original": "LIMIAR",
+        "cifrado": "WDOMMN",
+        "decifrado": "LIMIAR"
+      }
+    }
+  ],
+  "observacoes": [
+    "Coordenadas reais de paginas/linhas/palavras devem vir de matriz-livro.json devidamente conferida.",
+    "As pistas nao revelam diretamente a expressao.",
+    "Arquivo publico nao e mecanismo de autenticacao segura."
+  ]
+}
