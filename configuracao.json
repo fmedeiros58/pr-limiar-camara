@@ -1,13 +1,17 @@
 {
   "protocolo": "PR-LIMIAR",
-  "versao_configuracao": "1.0.0",
+  "versao_configuracao": "1.1.0",
   "componente": "camara-de-decifracao",
   "obra": "Pedagogia da Responsividade",
   "matriz": {
     "arquivo": "./matriz-livro.json",
     "versao_esperada": "1.0.0",
     "referencia": "pagina_pdf",
-    "coordenadas": ["pagina_pdf", "linha", "palavra"],
+    "coordenadas": [
+      "pagina_pdf",
+      "linha",
+      "palavra"
+    ],
     "indice_inicial": 1,
     "ignorar_paginas_sem_texto": true,
     "exigir_referencia_imutavel": true
@@ -24,7 +28,9 @@
     "habilitado": true,
     "modalidade": "classica_5x5",
     "alfabeto": "ABCDEFGHIKLMNOPQRSTUVWXYZ",
-    "unificar_letras": {"J": "I"},
+    "unificar_letras": {
+      "J": "I"
+    },
     "remover_acentos_da_chave": true,
     "ignorar_espacos_e_pontuacao_da_chave": true,
     "eliminar_letras_repetidas_da_chave": true,
@@ -39,7 +45,7 @@
     },
     "chave_literaria": {
       "sorteio_aleatorio": true,
-      "fonte": "catalogo_de_chaves_da_matriz",
+      "fonte": "matriz-playfair.json",
       "campo_catalogo": "chaves_literarias",
       "exigir_pista_para_encontrar_chave": true,
       "exibir_chave_em_claro": false,
@@ -47,15 +53,27 @@
       "evitar_repeticao_imediata_quando_possivel": true
     },
     "codificacao_de_coordenadas": {
-      "metodo": "alfabeto_base25_fixo",
+      "metodo": "digrafos_distintos_600_com_permutacao_afim",
       "alfabeto": "ABCDEFGHIKLMNOPQRSTUVWXYZ",
-      "campos": ["pagina_pdf", "linha", "palavra"],
-      "largura_letras_por_campo": 4,
-      "base": 25,
-      "indice_numerico": 1,
-      "separador_visual_entre_coordenadas": " ",
-      "comprimento_bloco_original": 12,
-      "observacao": "Codificar cada numero como inteiro de base 25 em quatro letras, com A=0 ate Z=24 (sem J), utilizando numero-1. Decifrar e somar 1. Rejeitar valores fora da matriz."
+      "campos": [
+        "pagina_pdf",
+        "linha",
+        "palavra"
+      ],
+      "limite_por_campo": 600,
+      "digrafos_por_inscricao": 3,
+      "multiplicador": 37,
+      "inverso_modular": 373,
+      "modulo": 600,
+      "deslocamento_por_campo": [
+        71,
+        233,
+        419
+      ],
+      "incremento_por_indice_inscricao": 97,
+      "indice_inscricao_inicial": 0,
+      "regras": "Codificar n com r=((n-1)*37+offset_campo+indice_inscricao*97) mod 600; primeira letra indice floor(r/24); segunda letra indice r%24 entre as 24 letras diferentes da primeira. Recuperar r pelo processo inverso e n=(((r-offset_campo-indice_inscricao*97)*373) mod 600)+1.",
+      "observacao": "Os tres digrafos de uma inscricao representam pagina, linha e palavra. Não se utiliza o algoritmo base25 de 4 letras da versao anterior."
     }
   },
   "randomizacao": {
@@ -84,14 +102,18 @@
     "revelar_ajuda_gradualmente": true,
     "permitir_acessibilidade_e_instrucoes_sobre_regras": true,
     "avanco": "somente_apos_validar_todas_as_palavras",
-    "mensagem_de_erro": "A sequencia ainda nao corresponde as palavras do livro. Reveja a chave e as posicoes encontradas."
+    "mensagem_de_erro": "A sequencia ainda nao corresponde as palavras do livro. Reveja a chave e as posicoes encontradas.",
+    "quadrado_playfair_apos_chave": true,
+    "quadrado_clicavel_para_decifracao": true,
+    "inscricao_verde_apos_decifracao_correta": true,
+    "coordenadas_exibidas_apos_decifracao": true
   },
   "validacao": {
     "modo_atual": "prototipo_local",
     "observacao": "A matriz e as respostas em repositorio publico nao constituem segredo nem controle de acesso forte.",
     "modo_futuro": "servidor_com_sessoes_e_autorizacao_assinada",
     "emitir_chave_de_acesso_ao_portal_no_modo_local": false,
-    "url_segunda_etapa_apos_validacao": "https://fmedeiros58.github.io/pacto-de-leitura/b.json",
+    "url_segunda_etapa_apos_validacao": "./pacto-de-leitura.html",
     "integracao_automatica_portal": false,
     "nota_integracao": "O portal principal ainda precisa implementar verificacao de autorizacao. O hash de palavras nao abre diretamente um conteudo cifrado com chave fixa."
   }
