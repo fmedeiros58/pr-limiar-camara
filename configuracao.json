@@ -1,0 +1,98 @@
+{
+  "protocolo": "PR-LIMIAR",
+  "versao_configuracao": "1.0.0",
+  "componente": "camara-de-decifracao",
+  "obra": "Pedagogia da Responsividade",
+  "matriz": {
+    "arquivo": "./matriz-livro.json",
+    "versao_esperada": "1.0.0",
+    "referencia": "pagina_pdf",
+    "coordenadas": ["pagina_pdf", "linha", "palavra"],
+    "indice_inicial": 1,
+    "ignorar_paginas_sem_texto": true,
+    "exigir_referencia_imutavel": true
+  },
+  "normalizacao": {
+    "unicode": "NFC",
+    "comparacao_sem_diferenca_de_maiusculas": true,
+    "remover_acentos_na_validacao": true,
+    "ignorar_pontuacao_externa": true,
+    "preservar_ordem_das_palavras": true,
+    "separador_frase_resposta": "|"
+  },
+  "playfair": {
+    "habilitado": true,
+    "modalidade": "classica_5x5",
+    "alfabeto": "ABCDEFGHIKLMNOPQRSTUVWXYZ",
+    "unificar_letras": {"J": "I"},
+    "remover_acentos_da_chave": true,
+    "ignorar_espacos_e_pontuacao_da_chave": true,
+    "eliminar_letras_repetidas_da_chave": true,
+    "completar_quadro_com_alfabeto": true,
+    "tamanho_digrama": 2,
+    "letra_de_preenchimento": "X",
+    "letra_alternativa_de_preenchimento": "Q",
+    "regras": {
+      "mesma_linha": "deslocar_uma_coluna_para_a_direita_na_cifragem_e_para_a_esquerda_na_decifragem",
+      "mesma_coluna": "deslocar_uma_linha_para_baixo_na_cifragem_e_para_cima_na_decifragem",
+      "retangulo": "substituir_cada_letra_pela_da_mesma_linha_na_coluna_da_outra"
+    },
+    "chave_literaria": {
+      "sorteio_aleatorio": true,
+      "fonte": "catalogo_de_chaves_da_matriz",
+      "campo_catalogo": "chaves_literarias",
+      "exigir_pista_para_encontrar_chave": true,
+      "exibir_chave_em_claro": false,
+      "exibir_matriz_5x5": false,
+      "evitar_repeticao_imediata_quando_possivel": true
+    },
+    "codificacao_de_coordenadas": {
+      "metodo": "alfabeto_base25_fixo",
+      "alfabeto": "ABCDEFGHIKLMNOPQRSTUVWXYZ",
+      "campos": ["pagina_pdf", "linha", "palavra"],
+      "largura_letras_por_campo": 4,
+      "base": 25,
+      "indice_numerico": 1,
+      "separador_visual_entre_coordenadas": " ",
+      "comprimento_bloco_original": 12,
+      "observacao": "Codificar cada numero como inteiro de base 25 em quatro letras, com A=0 ate Z=24 (sem J), utilizando numero-1. Decifrar e somar 1. Rejeitar valores fora da matriz."
+    }
+  },
+  "randomizacao": {
+    "habilitada": true,
+    "fonte": "Web_Crypto_API_crypto.getRandomValues",
+    "nova_sequencia_por_visita": true,
+    "permitir_novo_desafio_por_botao": true,
+    "palavras_por_desafio": 5,
+    "coordenadas_sem_repeticao": true,
+    "sortear_apenas_posicoes_existentes_na_matriz": true,
+    "limites": {
+      "comprimento_minimo_palavra": 4,
+      "comprimento_maximo_palavra": 24,
+      "ignorar_numeros": true,
+      "ignorar_palavras_somente_de_uma_letra": true
+    },
+    "evitar_mesma_palavra_repetida_no_desafio": true,
+    "metodo_de_escolha": "amostragem_uniforme_com_rejeicao_para_evitar_vies_de_modulo"
+  },
+  "experiencia": {
+    "mostrar_coordenadas_em_claro": false,
+    "mostrar_resposta_ou_inicio_da_linha": false,
+    "mostrar_inscricao_cifrada": true,
+    "mostrar_pista_literaria_da_chave": true,
+    "mostrar_numero_de_fragmentos": true,
+    "revelar_ajuda_gradualmente": true,
+    "permitir_acessibilidade_e_instrucoes_sobre_regras": true,
+    "avanco": "somente_apos_validar_todas_as_palavras",
+    "mensagem_de_erro": "A sequencia ainda nao corresponde as palavras do livro. Reveja a chave e as posicoes encontradas."
+  },
+  "validacao": {
+    "modo_atual": "prototipo_local",
+    "observacao": "A matriz e as respostas em repositorio publico nao constituem segredo nem controle de acesso forte.",
+    "modo_futuro": "servidor_com_sessoes_e_autorizacao_assinada",
+    "emitir_chave_de_acesso_ao_portal_no_modo_local": false,
+    "url_segunda_etapa_apos_validacao": "https://fmedeiros58.github.io/pacto-de-leitura/b.json",
+    "integracao_automatica_portal": false,
+    "nota_integracao": "O portal principal ainda precisa implementar verificacao de autorizacao. O hash de palavras nao abre diretamente um conteudo cifrado com chave fixa."
+  }
+}
