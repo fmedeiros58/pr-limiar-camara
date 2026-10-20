@@ -44,13 +44,29 @@ function parseKeys(data){const raw=Array.isArray(data.chaves_literarias)?data.ch
 const ROOT='https://fmedeiros58.github.io/pr-limiar-camara/';
 const FILES={config:ROOT+'configuracao.json',book:ROOT+'matriz-livro.json',keys:ROOT+'matriz-playfair.json'};
 async function json(url){
- const res=await fetch(url+'?atualizacao='+Date.now(),{cache:'no-store'});
- if(!res.ok)throw Error('Falha ao carregar '+url+' (HTTP '+res.status+').');
- const raw=await res.text();
- try{return JSON.parse(raw)}catch(e){throw Error('O arquivo '+url.split('/').pop()+' não contém JSON válido. Início recebido: '+JSON.stringify(raw.slice(0,75))+'. Verifique o upload completo no GitHub.')}
+  const nome=url.split('/').pop();
+  let res;
+  try { res=await fetch(url+'?atualizacao='+Date.now(),{cache:'no-store'}); }
+  catch(err){ throw Error('Falha de rede em '+nome+': '+err.message+' — '+url); }
+  if(!res.ok)throw Error(nome+' retornou HTTP '+res.status+' em '+url);
+  const raw=await res.text();
+  const tipo=res.headers.get('content-type')||'não informado';
+  if(!raw.trim())throw Error(nome+' está vazio ('+url+').');
+  let dados;
+  try { dados=JSON.parse(raw.replace(/^\uFEFF/,'')); }
+  catch(err){
+    const trecho=raw.slice(0,140).replace(/\s+/g,' ');
+    throw Error(nome+' inválido: '+err.message+'. Tipo: '+tipo+'. Início do arquivo: '+JSON.stringify(trecho)+'. Confira o endereço: '+url);
+  }
+  if(!dados||typeof dados!=='object'||Array.isArray(dados))throw Error(nome+' precisa conter um objeto JSON na raiz.');
+  return dados;
 }
 async function init(){try{
-[cfg,matrix,keyfile]=await Promise.all([json(FILES.config),json(FILES.book),json(FILES.keys)]);
+const nomes=['configuracao.json','matriz-livro.json','matriz-playfair.json'];
+ const resultados=await Promise.allSettled([json(FILES.config),json(FILES.book),json(FILES.keys)]);
+ const falhas=resultados.map((r,i)=>r.status==='rejected' ? nomes[i]+': '+r.reason.message : '').filter(Boolean);
+ if(falhas.length)throw Error(falhas.join(' | '));
+ [cfg,matrix,keyfile]=resultados.map(r=>r.value);
 if(cfg.protocolo!=='PR-LIMIAR'||!cfg.playfair?.habilitado)throw Error('Configuração Playfair incompatível');
 entries=parseMatrix(matrix);catalog=parseKeys(keyfile);
 const limit=cfg.randomizacao?.limites??{},min=limit.comprimento_minimo_palavra??4,max=limit.comprimento_maximo_palavra??24;
