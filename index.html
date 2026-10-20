@@ -27,7 +27,7 @@ main{max-width:900px;margin:5vh auto}.crest{text-align:center;letter-spacing:.35
 "use strict";
 const $=id=>document.getElementById(id);
 const ABC='ABCDEFGHIKLMNOPQRSTUVWXYZ';
-let cfg=null, matrix=null, entries=[], catalog=[], current=null, keyOK=false;
+let cfg=null, matrix=null, keyfile=null, entries=[], catalog=[], current=null, keyOK=false;
 const normalize=s=>String(s||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z0-9]/g,'');
 const pure=s=>String(s||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toUpperCase().replace(/J/g,'I').replace(/[^A-Z]/g,'');
 function rand(max){if(!Number.isInteger(max)||max<1||max>0xFFFFFFFF)throw Error('Limite de sorteio inválido');const range=0x100000000,limit=range-(range%max);let n;do{n=crypto.getRandomValues(new Uint32Array(1))[0]}while(n>=limit);return n%max}
@@ -41,16 +41,23 @@ if(Array.isArray(data.posicoes))for(const p of data.posicoes)add(p.page??p.pagin
 if(Array.isArray(data.paginas))for(const page of data.paginas){const pg=page.pagina_pdf??page.page;if(Array.isArray(page.linhas))for(const line of page.linhas){const li=line.numero??line.linha??line.line;if(Array.isArray(line.palavras))line.palavras.forEach((w,i)=>add(pg,li,i+1,typeof w==='string'?w:w.texto??w.palavra))}}
 return found}
 function parseKeys(data){const raw=Array.isArray(data.chaves_literarias)?data.chaves_literarias:[];return raw.map(k=>({phrase:k.expressao??k.chave??k.texto??k.palavra,clue:k.pista??k.charada??k.dica})).filter(k=>typeof k.phrase==='string'&&pure(k.phrase)&&typeof k.clue==='string'&&k.clue.trim())}
-async function json(url){const res=await fetch(url,{cache:'no-store'});if(!res.ok)throw Error(url+' respondeu HTTP '+res.status);return res.json()}
+const ROOT='https://fmedeiros58.github.io/pr-limiar-camara/';
+const FILES={config:ROOT+'configuracao.json',book:ROOT+'matriz-livro.json',keys:ROOT+'matriz-playfair.json'};
+async function json(url){
+ const res=await fetch(url+'?atualizacao='+Date.now(),{cache:'no-store'});
+ if(!res.ok)throw Error('Falha ao carregar '+url+' (HTTP '+res.status+').');
+ const raw=await res.text();
+ try{return JSON.parse(raw)}catch(e){throw Error('O arquivo '+url.split('/').pop()+' não contém JSON válido. Início recebido: '+JSON.stringify(raw.slice(0,75))+'. Verifique o upload completo no GitHub.')}
+}
 async function init(){try{
-[cfg,matrix]=await Promise.all([json('./configuracao.json'),json('./matriz-livro.json')]);
+[cfg,matrix,keyfile]=await Promise.all([json(FILES.config),json(FILES.book),json(FILES.keys)]);
 if(cfg.protocolo!=='PR-LIMIAR'||!cfg.playfair?.habilitado)throw Error('Configuração Playfair incompatível');
-entries=parseMatrix(matrix);catalog=parseKeys(matrix);
+entries=parseMatrix(matrix);catalog=parseKeys(keyfile);
 const limit=cfg.randomizacao?.limites??{},min=limit.comprimento_minimo_palavra??4,max=limit.comprimento_maximo_palavra??24;
 entries=entries.filter(p=>normalize(p.answer).length>=min&&normalize(p.answer).length<=max&&(!limit.ignorar_numeros||!/\d/.test(p.answer))&&p.page>0&&p.line>0&&p.word>0&&p.page<=390625&&p.line<=390625&&p.word<=390625);
 const count=cfg.randomizacao?.palavras_por_desafio??5;
 if(entries.length<count)throw Error('A matriz tem apenas '+entries.length+' posições válidas. Publique uma matriz textual completa.');
-if(!catalog.length)throw Error('A matriz ainda não possui chaves_literarias com expressao e pista. Adicione esse catálogo antes de usar Playfair.');
+if(!catalog.length)throw Error('O matriz-playfair.json precisa conter chaves_literarias com expressao e pista.');
 $('edition').textContent='Matriz '+(matrix.versao_matriz??'experimental')+' · '+entries.length+' posições';$('challenge').hidden=false;newChallenge();
 }catch(e){$('status').textContent='A Câmara aguarda seus arquivos: '+e.message;$('status').className='error';$('session').textContent='Não foi possível iniciar a cifra';}}
 function newChallenge(){
@@ -63,7 +70,7 @@ sessionStorage.removeItem('pr-limiar-passagem-v1');const nonce=Array.from(crypto
 $('session').textContent='Vestígio · '+nonce.slice(0,8).toUpperCase();$('key-clue').textContent=key.clue;$('key-guess').value='';$('key-status').textContent='';$('inscriptions').hidden=true;$('result').hidden=true;$('status').textContent='';$('status').className='';$('bar').style.width='0%';$('positions').replaceChildren();
 chosen.forEach((p,i)=>{const row=document.createElement('div');row.className='row';const side=document.createElement('div');const label=document.createElement('div');label.className='fieldtitle';label.textContent='Inscrição '+String(i+1).padStart(2,'0');const code=document.createElement('div');code.className='coordinate';const encrypted=encrypt(coord(p),key.phrase);code.textContent=(encrypted.match(/.{2}/g)||[]).join(' · ');side.append(label,code);const inp=document.createElement('input');inp.required=true;inp.name='w'+i;inp.autocomplete='off';inp.spellcheck=false;inp.placeholder='Palavra encontrada';inp.setAttribute('aria-label','Palavra da inscrição '+(i+1));row.append(side,inp);$('positions').append(row)})}
 function verifyKey(){if(!current)return;if(normalize($('key-guess').value)!==normalize(current.key.phrase)){$('key-status').textContent='O quadrado ainda não encontrou seu nome. Releia a pista.';return}$('key-status').textContent='A chave literária foi reconhecida. As inscrições foram reveladas.';keyOK=true;$('inscriptions').hidden=false;$('bar').style.width='30%';$('inscriptions').scrollIntoView({behavior:'smooth',block:'start'})}
-async function submit(e){e.preventDefault();if(!current||!keyOK)return;const words=current.chosen.map((p,i)=>$('form').elements['w'+i].value.trim());const wrong=current.chosen.findIndex((p,i)=>normalize(words[i])!==normalize(p.answer));if(wrong>=0){$('status').textContent='A inscrição '+(wrong+1)+' ainda não corresponde à palavra procurada. Refaça a decifração e confira a edição.';$('status').className='error';return}const payload='PR-LIMIAR|CAMARA|1.0.0|'+current.nonce+'|'+words.map(normalize).join('|');const digest=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(payload));$('session-code').textContent=Array.from(new Uint8Array(digest),b=>b.toString(16).padStart(2,'0')).join('').toUpperCase();$('result').hidden=false;$('bar').style.width='100%';$('status').className='success';$('status').textContent='A travessia local foi concluída.';sessionStorage.setItem('pr-limiar-passagem-v1',JSON.stringify({nonce:current.nonce,code,issuedAt:Date.now()}));$('b-link').href='./pacto-de-leitura.html';$('result').scrollIntoView({behavior:'smooth',block:'start'})}
+async function submit(e){e.preventDefault();if(!current||!keyOK)return;const words=current.chosen.map((p,i)=>$('form').elements['w'+i].value.trim());const wrong=current.chosen.findIndex((p,i)=>normalize(words[i])!==normalize(p.answer));if(wrong>=0){$('status').textContent='A inscrição '+(wrong+1)+' ainda não corresponde à palavra procurada. Refaça a decifração e confira a edição.';$('status').className='error';return}const payload='PR-LIMIAR|CAMARA|1.0.0|'+current.nonce+'|'+words.map(normalize).join('|');const digest=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(payload));$('session-code').textContent=Array.from(new Uint8Array(digest),b=>b.toString(16).padStart(2,'0')).join('').toUpperCase();$('result').hidden=false;$('bar').style.width='100%';$('status').className='success';$('status').textContent='A travessia local foi concluída.';sessionStorage.setItem('pr-limiar-passagem-v1',JSON.stringify({nonce:current.nonce,code:$('session-code').textContent,issuedAt:Date.now()}));$('b-link').href=ROOT+'pacto-de-leitura.html';$('result').scrollIntoView({behavior:'smooth',block:'start'})}
 $('check-key').addEventListener('click',verifyKey);$('key-guess').addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();verifyKey()}});$('form').addEventListener('submit',submit);$('new').addEventListener('click',newChallenge);$('hint-button').addEventListener('click',()=>{$('status').textContent='Use a chave encontrada para reconstruir o quadrado. Cada inscrição reúne doze letras, divididas em três grupos de quatro antes da cifragem. Não confunda linhas da matriz com linhas que mudam de tamanho na tela.';$('status').className=''});init();
 
 </script></body></html>
