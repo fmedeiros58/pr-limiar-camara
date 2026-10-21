@@ -1,53 +1,24 @@
 <!doctype html>
 <html lang="pt-BR">
 <head>
-  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>PORTAL · Administração</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>PORTAL · Atalhos</title>
   <style>
-    :root{color-scheme:dark;--bg:#101410;--panel:#1d261e;--panel2:#151b16;--gold:#d6bd87;--text:#f3eee4;--muted:#bbc3b5;--line:#4c5a4c;--ok:#a7e1ad;--err:#f0b2a6}
-    *{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 50% -20%,#2c3b2e,#101410 55rem);color:var(--text);font:16px/1.55 Georgia,serif}.shell{width:min(1180px,calc(100% - 32px));margin:30px auto 70px}.top{display:flex;justify-content:space-between;gap:20px;align-items:end;border-bottom:1px solid var(--line);padding-bottom:18px}.eyebrow,.label{font:11px Arial,sans-serif;letter-spacing:.16em;text-transform:uppercase;color:var(--gold)}h1{font-size:clamp(36px,6vw,68px);font-weight:400;line-height:1;margin:18px 0 8px}h2{font-weight:400;margin-top:0}.grid{display:grid;grid-template-columns:330px 1fr;gap:22px;margin-top:24px}.panel{background:rgba(29,38,30,.94);border:1px solid var(--line);padding:22px;border-radius:3px}.stack{display:grid;gap:12px}.actions{display:grid;gap:9px;margin-top:18px}button{border:1px solid var(--gold);background:var(--gold);color:#172018;padding:12px 14px;cursor:pointer;font:600 12px Arial,sans-serif;letter-spacing:.03em}button.secondary{background:transparent;color:var(--gold)}button:disabled{opacity:.45;cursor:not-allowed}input,textarea,select{width:100%;background:#101510;color:var(--text);border:1px solid #687665;border-radius:2px;padding:11px;font:16px Georgia,serif}textarea{min-height:330px;resize:vertical}.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}.status{min-height:28px;color:var(--muted);font:13px/1.5 Arial,sans-serif}.status.ok{color:var(--ok)}.status.error{color:var(--err)}.preview{border:1px solid #536052;background:#121812;padding:24px;min-height:180px}.preview h3{font-size:32px;font-weight:400;margin:0 0 8px}.preview .meta{font:12px Arial,sans-serif;color:var(--gold)}.preview img{max-width:100%;height:auto}.note{color:var(--muted);font-size:14px}.file-list{display:grid;gap:6px;margin-top:8px}.file{border:1px solid #3e4a3f;padding:8px;font:12px Arial,sans-serif;color:var(--muted)}@media(max-width:800px){.grid{grid-template-columns:1fr}.top{display:block}.row{grid-template-columns:1fr}}
+    :root{color-scheme:dark;--bg:#101410;--panel:#1d261e;--gold:#d6bd87;--text:#f3eee4;--muted:#bbc3b5;--line:#4c5a4c}
+    *{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 50% -20%,#2c3b2e,#101410 55rem);color:var(--text);font:16px/1.55 Georgia,serif}.shell{width:min(850px,calc(100% - 32px));margin:70px auto}.eyebrow{font:11px Arial,sans-serif;letter-spacing:.16em;text-transform:uppercase;color:var(--gold)}h1{font-size:clamp(42px,8vw,82px);font-weight:400;line-height:1;margin:18px 0 10px}.note{color:var(--muted)}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:34px}.card{display:block;padding:24px 18px;background:rgba(29,38,30,.94);border:1px solid var(--line);color:var(--text);text-decoration:none;min-height:170px}.card:hover{border-color:var(--gold);transform:translateY(-2px)}.card strong{display:block;color:var(--gold);font-size:24px;font-weight:400;margin:15px 0 8px}.card span{color:var(--muted);font:13px Arial,sans-serif}@media(max-width:700px){.grid{grid-template-columns:1fr}}
   </style>
 </head>
 <body>
-<main class="shell">
-  <header class="top"><div><div class="eyebrow">Portal editorial local · OneDrive</div><h1>PORTAL</h1><p class="note">Administração do acervo.</p></div><div class="eyebrow">Administração protegida</div></header>
-  <div class="grid">
-    <aside class="panel stack">
-      <div class="eyebrow">Ambiente de trabalho</div>
-      <p class="note">Escolha a pasta sincronizada do OneDrive. O editor grava documentos independentes e não usa banco SQLite compartilhado.</p>
-      <button id="choose-folder">Selecionar pasta do OneDrive</button>
-      <div id="folder-label" class="status">Nenhuma pasta selecionada.</div>
-      <div class="stack" style="gap:6px"><a href="../../camara.html" target="_blank" rel="noopener" style="color:var(--gold);font:12px Arial,sans-serif">Abrir a Câmara local ↗</a><a href="https://fmedeiros58.github.io/pr-limiar-camara/camara.html" target="_blank" rel="noopener" style="color:var(--gold);font:12px Arial,sans-serif">Abrir a Câmara publicada ↗</a><a href="../../acervo.html" target="_blank" rel="noopener" style="color:var(--gold);font:12px Arial,sans-serif">Abrir o Acervo local ↗</a></div>
-      <button id="generate-key" class="secondary">Gerar chave interna do acervo</button>
-      <p class="note">A chave interna é gerada localmente e não é salva automaticamente. Guarde-a em um gerenciador de senhas ou cofre separado.</p>
-      <div class="actions">
-        <button id="new-post">Nova publicação</button>
-        <button id="new-work" class="secondary">Nova obra</button>
-        <button id="add-file" class="secondary">Adicionar arquivo</button>
-        <button id="save-draft" class="secondary">Salvar rascunho</button>
-        <button id="preview" class="secondary">Visualizar</button>
-        <button id="encrypt">Criptografar</button>
-        <button id="publish" class="secondary">Publicar no GitHub</button>
-        <button id="restore" class="secondary">Restaurar versão anterior</button>
-      </div>
-      <input id="file-input" type="file" multiple hidden>
-      <div id="status" class="status" role="status" aria-live="polite"></div>
-    </aside>
-    <section class="panel">
-      <div class="eyebrow">Editor visual</div>
-      <h2 id="form-heading">Nova publicação</h2>
-      <div class="stack">
-        <div class="row"><label><span class="label">Título</span><input id="title" placeholder="Título da publicação"></label><label><span class="label">Autor</span><input id="author" placeholder="Autor"></label></div>
-        <label><span class="label">Subtítulo</span><input id="subtitle" placeholder="Uma linha de apresentação"></label>
-        <div class="row"><label><span class="label">Categoria</span><input id="category" placeholder="Memórias, ensaio…"></label><label><span class="label">Estado</span><select id="state"><option value="draft">Rascunho</option><option value="published">Publicado</option></select></label></div>
-        <label><span class="label">Texto integral</span><textarea id="body" placeholder="Escreva aqui. Parágrafos separados por uma linha em branco."></textarea></label>
-        <label><span class="label">Senha de criptografia</span><input id="password" type="password" autocomplete="new-password" placeholder="Não será salva no acervo"></label>
-        <div><span class="label">Arquivos associados</span><div id="file-list" class="file-list"><div class="file">Nenhum arquivo adicionado.</div></div></div>
-      </div>
-    </section>
-  </div>
-  <section class="panel" style="margin-top:22px"><div class="eyebrow">Pré-visualização</div><div id="preview-pane" class="preview"><h3>Sem título</h3><div class="meta">Rascunho</div><p>O conteúdo aparecerá aqui.</p></div></section>
-</main>
-<script src="../ferramentas/acervo-crypto.js"></script><script src="app.js"></script>
-</body></html>
-
+  <main class="shell">
+    <div class="eyebrow">Ambiente local · OneDrive</div>
+    <h1>PORTAL</h1>
+    <p class="note">Escolha o ambiente que deseja abrir.</p>
+    <div class="grid">
+      <a class="card" href="camara.html"><div class="eyebrow">01</div><strong>Câmara</strong><span>Resolver o desafio de decifração.</span></a>
+      <a class="card" href="portal.html"><div class="eyebrow">02</div><strong>Portal</strong><span>Administrar publicações e arquivos protegidos.</span></a>
+      <a class="card" href="acervo.html"><div class="eyebrow">03</div><strong>Acervo</strong><span>Acessar o ambiente de leitura.</span></a>
+    </div>
+  </main>
+</body>
+</html>
