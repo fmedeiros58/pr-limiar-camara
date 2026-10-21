@@ -113,7 +113,7 @@
     "observacao": "As respostas em claro foram removidas da matriz publicada e substituidas por compromissos SHA-256 vinculados às coordenadas. Isto dificulta acesso casual, mas não substitui um serviço privado contra automação.",
     "modo_futuro": "servidor_com_sessoes_e_autorizacao_assinada",
     "emitir_chave_de_acesso_ao_portal_no_modo_local": true,
-    "url_segunda_etapa_apos_validacao": "./pacto-de-leitura.html",
+    "url_segunda_etapa_apos_validacao": "./acervo.html",
     "integracao_automatica_portal": "em_implementacao",
     "nota_integracao": "O comprovante de conclusão é uma autorização de sessão. A chave de conteúdo do acervo deve permanecer independente e ser protegida por envelope AES-256-GCM."
   }
