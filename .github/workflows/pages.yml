@@ -30,7 +30,7 @@ jobs:
         run: |
           set -euo pipefail
           mkdir -p _site/administracao/ferramentas
-          cp index.html configuracao.json matriz-livro.json matriz-playfair.json pacto-de-leitura.html acervo.html _site/
+          cp index.html configuracao.json matriz-livro.json matriz-playfair.json acervo.html _site/
           cp administracao/ferramentas/acervo-crypto.js _site/administracao/ferramentas/
           if [ -d acervo-criptografado/conteudos ]; then cp -R acervo-criptografado/conteudos _site/acervo; fi
       - name: Upload public site artifact
