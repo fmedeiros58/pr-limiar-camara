@@ -39,7 +39,9 @@ html{scroll-behavior:smooth}body{background:radial-gradient(circle at 50% -10%,#
 #challenge{display:block}#playfair-panel{position:sticky;top:16px;z-index:3;margin:32px 0 30px;box-shadow:0 12px 28px rgba(0,0,0,.32)}#inscriptions{display:block;margin:0}#positions{display:grid;grid-template-columns:1fr;gap:15px}.fragment{min-width:0}.fragment .cipher{word-break:break-word}.fragment input{max-width:100%}
 @media(max-width:660px){#playfair-panel{position:static;box-shadow:none}#positions{grid-template-columns:1fr}}/* Painel compacto: informações à esquerda e matriz à direita */
 #playfair-panel{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:10px 28px;align-items:center}#playfair-panel h2{grid-column:1;grid-row:1;margin:0}#playfair-panel>p:first-of-type{grid-column:1;grid-row:2;margin:0;text-align:left}#playfair-grid{grid-column:2;grid-row:1 / span 3;width:100%;max-width:300px;margin:0 auto;align-self:center}#active-notice{grid-column:1;grid-row:3;margin:4px 0;padding:10px;text-align:left}#playfair-panel>p:last-of-type{grid-column:1;grid-row:4;margin:0;text-align:left}
-@media(max-width:660px){#playfair-panel{display:block}#playfair-panel h2{margin-bottom:12px}#playfair-grid{margin:20px auto 16px}#active-notice,#playfair-panel>p:last-of-type{ text-align:center}}</style></head><body>
+@media(max-width:660px){#playfair-panel{display:block}#playfair-panel h2{margin-bottom:12px}#playfair-grid{margin:20px auto 16px}#active-notice,#playfair-panel>p:last-of-type{ text-align:center}}/* Ajuste fino de densidade: respiro superior e inferior equivalente */
+#playfair-panel{position:sticky;padding:18px 28px;min-height:0}#playfair-panel>p:last-of-type{position:absolute;left:28px;bottom:18px;width:calc(100% - 356px);margin:0}#playfair-grid{margin:0 auto}
+@media(max-width:660px){#playfair-panel{position:static;padding:20px 18px}#playfair-panel>p:last-of-type{position:static;width:auto;margin:12px 0 0}}</style></head><body>
 <main>
 <div class="topline"><div class="eyebrow">PR-LIMIAR · A obra como chave</div><div class="eyebrow" id="edition">Edição crítica · matriz Playfair</div></div>
 <div class="crest" aria-hidden="true">◇ · ◈ · ◇</div>
