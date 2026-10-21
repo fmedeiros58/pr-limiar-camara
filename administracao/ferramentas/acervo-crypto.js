@@ -46,6 +46,30 @@ const ACERVO_CRYPTO = (() => {
     return [...new Uint8Array(digest)].map(byte => byte.toString(16).padStart(2, '0')).join('');
   }
 
-  return { encryptJson, decryptJson, sha256, bytesToB64, b64ToBytes };
+  async function externalKeyFromChallenge(phrase) {
+    const normalized = String(phrase || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toUpperCase().replace(/[^A-Z]/g, '');
+    if (!normalized) throw new Error('Expressão Playfair inválida.');
+    return (await sha256(`PR-LIMIAR-ACERVO-EXTERNA/1|${normalized}`)).toUpperCase();
+  }
+
+  async function wrapInternalPassword(internalPassword, externalPassword, id) {
+    return encryptJson({ password: String(internalPassword) }, { password: externalPassword, type: 'key-wrap', id });
+  }
+
+  async function unwrapInternalPassword(wrapped, externalPassword) {
+    const value = await decryptJson(wrapped, externalPassword);
+    if (!value || typeof value.password !== 'string' || !value.password) throw new Error('Envelope de chave inválido.');
+    return value.password;
+  }
+
+  async function decryptKeyring(envelope, externalPassword) {
+    if (!envelope || envelope.formato !== 'ACERVO-KEYRING/1') throw new Error('Envelope de acesso externo não reconhecido.');
+    const wrapped = envelope.chaves?.find(item => item && item.id && item.envelope);
+    if (!wrapped) throw new Error('Nenhuma chave externa disponível.');
+    const internalPassword = await unwrapInternalPassword(wrapped.envelope, externalPassword);
+    return decryptJson(envelope.conteudo, internalPassword);
+  }
+
+  return { encryptJson, decryptJson, sha256, externalKeyFromChallenge, wrapInternalPassword, unwrapInternalPassword, decryptKeyring, bytesToB64, b64ToBytes };
 })();
 
